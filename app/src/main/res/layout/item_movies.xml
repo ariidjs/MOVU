@@ -13,7 +13,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="8dp"
+
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,7 +23,13 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/img_movie"/>
+                android:id="@+id/img_movie"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"/>
 
             <me.grantland.widget.AutofitTextView
                 android:layout_width="match_parent"
