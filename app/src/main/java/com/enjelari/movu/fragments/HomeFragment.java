@@ -37,6 +37,7 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     public RecyclerView recyclerMovie;
     private MoviesAdapter adapter;
+    private List<Movies> moviesList;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -53,8 +54,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerMovie = view.findViewById(R.id.rv_home);
+        moviesList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerMovie.setLayoutManager(linearLayoutManager);
+        adapter = new MoviesAdapter(getContext());
+        recyclerMovie.setAdapter(adapter);
         loadMovies();
 
     }
@@ -68,8 +72,9 @@ public class HomeFragment extends Fragment {
                 try {
                     if (response.isSuccessful()) {
                         List<Movies> listMovie = response.body().getResults();
-                        adapter = new MoviesAdapter(getContext(),listMovie);
-                        recyclerMovie.setAdapter(adapter);
+                        Log.d("Message", "Success : " +listMovie.toString());
+                        moviesList.addAll(listMovie);
+                        adapter.setMoviesList(moviesList);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -78,6 +83,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Responses> call, Throwable t) {
+//                Toast.makeText(getActivity(), "Error to connect : ", Toast.LENGTH_LONG).show();
                 Log.d("Message","Error"+t.getMessage());
             }
         });

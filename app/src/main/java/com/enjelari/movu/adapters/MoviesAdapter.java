@@ -27,9 +27,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     private Context context;
     private List<Movies> moviesList = new ArrayList<>();
 
-    public MoviesAdapter(Context context, List<Movies> moviesList) {
+    public MoviesAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setMoviesList(List<Movies> moviesList) {
         this.moviesList = moviesList;
+        notifyDataSetChanged();
     }
 
     @NonNull
